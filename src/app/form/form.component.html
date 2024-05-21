@@ -1,0 +1,72 @@
+<form (submit)="onSubmit()" [formGroup]="userForm">
+  <div class="mb-3">
+    <label class="form-label" for="name">{{formLabels.name}}:</label>
+    <input class="form-control" type="text" id="name" formControlName="name" placeholder={{formPlaceholders.name}}
+      [class]="{'is-valid': form['name'].valid, 'is-invalid': form['name'].invalid && form['name'].touched}"
+      (blur)="onValueChanged()">
+    <div class="invalid-feedback">{{formErrors.name}}</div>
+    <div class="valid-feedback">{{formSuccess.name}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="password">{{formLabels.password}}:</label>
+    <input class="form-control" type="text" id="password" formControlName="password"
+      placeholder={{formPlaceholders.password}}
+      [class]="{'is-valid': form['password'].valid, 'is-invalid': form['password'].invalid && form['password'].touched}"
+      (blur)="onValueChanged()">
+    <div class="invalid-feedback">{{formErrors.password}}</div>
+    <div class="valid-feedback">{{formSuccess.password}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="email">{{formLabels.email}}:</label>
+    <input class="form-control" type="text" id="email" formControlName="email" placeholder={{formPlaceholders.email}}
+      [class]="{'is-valid': form['email'].valid, 'is-invalid': form['email'].invalid && form['email'].touched}"
+      (blur)="onValueChanged()">
+    <div class="invalid-feedback">{{formErrors.email}}</div>
+    <div class="valid-feedback">{{formSuccess.email}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="age">{{formLabels.age}}:</label>
+    <input class="form-control" type="text" id="age" formControlName="age" placeholder={{formPlaceholders.age}}
+      [class]="{'is-valid': form['age'].valid, 'is-invalid': form['age'].invalid && form['age'].touched}"
+      (blur)="onValueChanged()">
+    <div class="invalid-feedback">{{formErrors.age}}</div>
+    <div class="valid-feedback">{{formSuccess.age}}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="site">{{formLabels.site}}:</label>
+    <input class="form-control" type="text" id="site" formControlName="site" placeholder={{formPlaceholders.site}}
+      [class]="{'is-valid': form['site'].valid, 'is-invalid': form['site'].invalid && (form['site'].touched || form['site'].dirty)}"
+      (blur)="onValueChanged()">
+    <div class="text-muted" *ngIf="form['site'].pending">
+      {{validationMessages.site.pending}}
+      <img class="loading" src="../../assets/Треугольники в кругу.gif" alt="">
+    </div>
+    <div *ngIf="form['site'].invalid && (form['site'].touched || form['site'].dirty)" class="invalid-feedback">
+      <div *ngIf="formErrors.site">{{formErrors.site}}</div>
+      <div *ngIf="!formErrors.site && form['site'].errors?.['urlNotAllowed']">
+        {{validationMessages.site.urlNotAllowed}}
+      </div>
+    </div>
+    <div class="valid-feedback">{{formSuccess.site}}</div>
+  </div>
+
+  <div class="mb-4">
+    <label class="form-label" for="role">{{formLabels.role}}:</label>
+    <select class="form-select" id="role" formControlName="role"
+      [class]="{'is-valid': form['role'].valid, 'is-invalid': form['role'].invalid && form['role'].touched}"
+      (blur)="onValueChanged()">
+      <option disabled selected [value]="null">{{formPlaceholders.role}}</option>
+      <option *ngFor="let role of roles" [value]="role">{{role}}</option>
+    </select>
+    <div class="invalid-feedback">{{formErrors.role}}</div>
+    <div class="valid-feedback">{{formSuccess.role}}</div>
+  </div>
+
+  <div class="mb-5">
+    <button type="submit" class="btn btn-info" [disabled]="userForm.invalid">Save</button>
+  </div>
+</form>
