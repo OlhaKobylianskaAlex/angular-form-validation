@@ -1,6 +1,6 @@
 # Implementation of form validation in Angular using RxJS
 
-### Page from Firebase: https://formvalidationangular-example.web.app/
+### Page from Firebase: 
 
 <hr>
 
